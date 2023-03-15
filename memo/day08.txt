@@ -42,6 +42,7 @@
     
     이때 컴포넌트 ref props에다 함수를 넘겨주면
     그함 수의 매개변수로는 자기자신 컴포넌트가 전달된다
+    따라서 다음과 같이 사용할 수 있다
     변수명 = useRef(null);
     <컴포넌트 ref()={매개변수 => 해당변수명[0] = 매개변수}/>
     이렇게 사용하게 되면 ref변수에는 0번째 방(key,속성)이 생기고
@@ -61,13 +62,37 @@ re-rendering될때 성능을 향상시키는 방법
         굳이 렌더링이 될 필요없는 변수를 state로 설정하면 메모리상에 낭비가 발생
         (state가 바뀔 때 마다 re-rendering이 되는데 화면상에서는 필요없는 변수라면)
     2.useMemo   
-        memoization
+        memoization : 불필요한 연산을 줄여 메모리 효율성을 높이는 방법
+        컴포넌트 안에 x,y,z 가 state로 활용되고 있다
+        그런데 이때, x와 y만을 사용하여 연산하는 함수가 존재한다라고 가정하면
+        z만 바뀌었을때 re-rendering 되더라도 x와 y는 변함이 없으니 기존에 있던 값을 재사용할수 있다
+        이때 useMemo를 사용할 수 있다
 
-react rendering 되는 요소 확인하기
-    개발자도구 react developer tools
-    chrome 웹스토어 > react developer 
-2. useMemo
+        const 변수명 = useMemo(함수,의존성배열);
 
+        변수는 useMemo의 첫번째 인자로 넘겨진 함수의 사용결과 값이 된다
+        또한 useMemo의 첫번째 인다로 넘어간 함수는 언제만 실행되나?
+        --> re-rendering 되더라도 의존성 배열 속에 들어있는 변수가 변경된적이 없다면
+        실행 안됨
+
+
+
+
+        react rendering 되는 요소 확인하기
+        개발자도구 react developer tools
+        chrome 웹스토어 > react developer 
+
+        useMemo는 연산결과 값을 재사용 할때(변수값)
+
+    3.useEffect()
+        컴포넌트가 생성되었을때 만 실행시켜줘
+        컴포넌트가 사라지기 전에 실행시켜줘
+        컴포넌트가 리렌더링 된다면 실행시켜줘
+    
+        useEffect(함수,의존성배열)
+            의존성 배열에다가 해당 함수를 언제만 실행시킬 것인지를 알려준다
+            
+            
 
 
 
