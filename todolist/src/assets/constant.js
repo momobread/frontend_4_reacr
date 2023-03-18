@@ -8,6 +8,7 @@ import MapPage from "../pages/MapPage"
 import GuestBookPage from "../1_guestbook/1_guestBook";
 import MarketPage from "../2_market/1_marketPage";
 import ParentPage from "../3_lifecycle/1_page";
+import ReducerPage from "../4_useReducer.js/1_page";
 
 
 export const paths = [
@@ -19,5 +20,6 @@ export const paths = [
     {path : '/online-guest-book',title:'온라인 방명록',component:<GuestBookPage/>},
     {path : '/market',title:'마켓페이지',component:<MarketPage/>},
     {path : '/lifecycle',title:'생명주기',component:<ParentPage/>},
+    {path : '/reducer',title:'리듀서살펴보기',component:<ReducerPage/>},
 ];
 

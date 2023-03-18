@@ -1,0 +1,18 @@
+useReducer 함수
+    useState와 동일...
+    상태관리, useState와 다른점은 상태관리 로직을 분리시킬 수 있다
+
+
+    --> useState를 사용하면 상태관리 로직이 어지럽게 섞여있기에 유지보수도 어렵고 가독성도 떨어진다
+
+useReducer(리듀서함수, state초기값)
+    함수 사용 결과는 state변수와 dispatch 함수
+    dispatch 함수의 인자로는 action 객체가 넘어가고,
+    action 객체의 type은 반드시 있어야 한다(이 값으로 구분을 하니까)
+    그 외의 데이터는 추가로 넘겨줘도 된다
+
+    dispatch 함수가 사용되면 useReducer 함수의 첫번째 인자로 넘겨준 리듀서함수가 실행되고,
+    그 리듀서함수는 첫번째 인자로는 state 변수, 두번째 인자로는 dispatch안에 쓴 action객체가 전달된다
+    그리고 그 리듀서 함수가 return 하는 값으로 해당 state가 변화한다
+
+
