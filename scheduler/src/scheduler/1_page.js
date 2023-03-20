@@ -48,6 +48,31 @@ const initialData= {
     ],
   };
 
+//schedule의 총 갯수를 구하는 함수(매개변수로 scheduleList와 내가 보고싶은 날짜를 받아와서)
+//함수 사용 결과는 schedule 갯수 return
+
+const getScheduleCnt = (date,scheduleList)=>{
+  const key = date.format('YYYYMMDD');
+    if(scheduleList[key] === undefined)
+    return 0;
+
+    return scheduleList[key].length;
+};
+
+const getCompleteCnt = (date,scheduleList)=>{
+
+  const key = date.format('YYYYMMDD');
+
+  if(scheduleList[key]===undefined){ 
+       return 0}
+
+    return scheduleList[key].filter((v)=>v.isComplete).length  
+       
+    };
+
+//완료된 schedule 갯수를 구하는 함수(매개변수로 scheduleList와 내가 보고싶은 날짜를 받아와서)
+//함수 사용 결과는 schedule 갯수 return
+
 
 
 
@@ -58,15 +83,21 @@ const initialData= {
 const MainPage= ()=>{
 
     const [date,setDate] = useState(dayjs());
-    const [ScheduleList,setScheduleList]= useState(initialData);
+    const [scheduleList,setScheduleList]= useState(initialData);
     console.log(date);
+    
+    const scheduleCnt = getScheduleCnt(date,scheduleList);
+    const completeCnt = getCompleteCnt(date,scheduleList);
 
     return(
         <MainWrap>
             <SchedulerHeader/>
             <SchedulerTemplate>
-                <SchedulerCalendar date={date} setDate={setDate}></SchedulerCalendar>
-                <SchedulerContent date={date}></SchedulerContent>
+                <SchedulerCalendar scheduleCnt={scheduleCnt} date={date} setDate={setDate}></SchedulerCalendar>
+                <SchedulerContent  
+                scheduleCnt={scheduleCnt} completeCnt={completeCnt} 
+                date={date} scheduleList={scheduleList}
+                setScheduleList={setScheduleList}/>
             </SchedulerTemplate>
         </MainWrap>
     );

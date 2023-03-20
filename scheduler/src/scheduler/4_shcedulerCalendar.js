@@ -5,7 +5,7 @@ import { DateCalendar } from "@mui/x-date-pickers";
 
 const SchedulerCalendar = (props) =>{
 
-    const {date,setDate}=props;
+    const {date,setDate,scheduleCnt}=props;
 
     return (
         <SchedulerCalendarWrap>
@@ -13,7 +13,7 @@ const SchedulerCalendar = (props) =>{
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateCalendar value ={date} onChange={(newValue)=>{setDate(newValue)}}></DateCalendar>
             </LocalizationProvider>
-            <p>{date.format('YYYY년 MM월 DD일')}은 총 9개의 일정이 존재합니다</p>
+            <p>{date.format('YYYY년 MM월 DD일')}은 총 {scheduleCnt}개의 일정이 존재합니다</p>
         </SchedulerCalendarWrap>
     )
 }
@@ -21,5 +21,6 @@ const SchedulerCalendar = (props) =>{
 export default SchedulerCalendar;
 
 const SchedulerCalendarWrap = styled.div`
+    align-self: center;
     
-`
+`;
